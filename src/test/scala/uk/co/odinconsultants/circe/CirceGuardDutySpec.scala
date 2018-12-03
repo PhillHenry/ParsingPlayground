@@ -39,10 +39,10 @@ class CirceGuardDutySpec extends WordSpec with Matchers {
     "be able to use optics" in {
       import io.circe.optics.JsonPath._
       import io.circe.parser._
-      val _createdAt = root.detail.createdAt.string
-      parse(SampleGuardDuty.json) match {
-        case Left(failure) => fail(failure)
-        case Right(text) =>
+      parse(json) match {
+        case Left(failure)  => fail(failure)
+        case Right(text)    =>
+          val _createdAt = root.detail.createdAt.string
           _createdAt.getOption(text) shouldBe Some("2018-05-11T14:56:39.976Z")
       }
     }
