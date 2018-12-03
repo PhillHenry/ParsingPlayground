@@ -35,6 +35,17 @@ class CirceGuardDutySpec extends WordSpec with Matchers {
     "extract action from GuardDuty JSON" in {
       asAction(json).fold(x => fail(x), _.shouldEqual(expectedAction))
     }
+
+    "be able to use optics" in {
+      import io.circe.optics.JsonPath._
+      import io.circe.parser._
+      val _createdAt = root.detail.createdAt.string
+      parse(SampleGuardDuty.json) match {
+        case Left(failure) => fail(failure)
+        case Right(text) =>
+          _createdAt.getOption(text) shouldBe Some("2018-05-11T14:56:39.976Z")
+      }
+    }
   }
 
 }
