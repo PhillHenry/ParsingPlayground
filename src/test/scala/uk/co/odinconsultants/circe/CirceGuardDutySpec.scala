@@ -20,7 +20,11 @@ class CirceGuardDutySpec extends WordSpec with Matchers {
       countryName,
       cityName,
       lat,
-      lon
+      lon,
+      protocol,
+      blocked,
+      remotePort,
+      localPort
     )
 
     "be able to parse JSON" in {

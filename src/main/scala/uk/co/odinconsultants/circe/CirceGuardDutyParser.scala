@@ -17,8 +17,12 @@ object CirceGuardDutyParser {
       city        <- c.downField("remoteIpDetails").downField("city").get[String]("cityName")
       lat         <- c.downField("remoteIpDetails").downField("geoLocation").get[Double]("lat")
       lon         <- c.downField("remoteIpDetails").downField("geoLocation").get[Double]("lon")
+      remotePort  <- c.downField("remotePortDetails").get[Int]("port")
+      localPort   <- c.downField("localPortDetails").get[Int]("port")
+      protocol    <- c.get[String]("protocol")
+      blocked     <- c.get[Boolean]("blocked")
     } yield {
-      Connection(direction, ipAddressV4, org, asnOrg, isp, country, city, lat, lon)
+      Connection(direction, ipAddressV4, org, asnOrg, isp, country, city, lat, lon, protocol, blocked, remotePort, localPort)
     }
   }
 
