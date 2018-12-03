@@ -58,7 +58,7 @@ object SampleGuardDuty {
                |              }
                |            ],
                |            "publicDnsName": "GeneratedFindingPublicDNSName",
-               |            "publicIp": """" + ipAddressV4 + """"
+               |            "publicIp": "$ipAddressV4"
                |          }
                |        ],
                |        "tags": [
@@ -110,36 +110,36 @@ object SampleGuardDuty {
                |      "action": {
                |        "actionType": "NETWORK_CONNECTION",
                |        "networkConnectionAction": {
-               |          "connectionDirection": """" + direction + """",
+               |          "connectionDirection": "$direction",
                |          "remoteIpDetails": {
-               |            "ipAddressV4": """" + ipAddressV4 + """",
+               |            "ipAddressV4": "$ipAddressV4",
                |            "organization": {
                |              "asn": "-1",
-               |              "asnOrg": """" + asnOrg + """",
-               |              "isp": """" + isp + """",
-               |              "org": """" + org + """"
+               |              "asnOrg": "$asnOrg",
+               |              "isp": "$isp",
+               |              "org": "$org"
                |            },
                |            "country": {
-               |              "countryName": """" + countryName + """"
+               |              "countryName": "$countryName"
                |            },
                |            "city": {
-               |              "cityName": """" + cityName + """"
+               |              "cityName": "$cityName"
                |            },
                |            "geoLocation": {
-               |              "lat": """ + lat + """,
-               |              "lon": """ + lon + """
+               |              "lat": $lat,
+               |              "lon": $lon
                |            }
                |          },
                |          "remotePortDetails": {
-               |            "port": """ + remotePort + """,
+               |            "port": $remotePort,
                |            "portName": "Unknown"
                |          },
                |          "localPortDetails": {
-               |            "port": """ + localPort + """,
+               |            "port": $localPort,
                |            "portName": "SSH"
                |          },
-               |          "protocol": """" + protocol + """",
-               |          "blocked": """ + blocked + """
+               |          "protocol": "$protocol",
+               |          "blocked": $blocked
                |        }
                |      },
                |      "resourceRole": "TARGET",
@@ -154,8 +154,8 @@ object SampleGuardDuty {
                |    "severity": 2,
                |    "createdAt": "2018-05-11T14:56:39.976Z",
                |    "updatedAt": "2018-05-11T14:56:39.976Z",
-               |    "title": """" + ipAddressV4 + """ is performing SSH brute force attacks against i-99999999. ",
-               |    "description": """" + ipAddressV4 + """ is performing SSH brute force attacks against i-99999999. Brute force attacks are used to gain unauthorized access to your instance by guessing the SSH password."
+               |    "title": "$ipAddressV4 is performing SSH brute force attacks against i-99999999. ",
+               |    "description": "$ipAddressV4 is performing SSH brute force attacks against i-99999999. Brute force attacks are used to gain unauthorized access to your instance by guessing the SSH password."
                |  }
                |}""".stripMargin('|')
 
