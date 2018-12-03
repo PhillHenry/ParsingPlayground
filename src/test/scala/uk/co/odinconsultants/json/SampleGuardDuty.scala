@@ -2,21 +2,21 @@ package uk.co.odinconsultants.json
 
 object SampleGuardDuty {
 
-  val direction   = """INBOUND"""
-  val ipAddressV4 = """198.51.100.0"""
-  val asnOrg      = """GeneratedFindingASNOrg"""
-  val isp         = """GeneratedFindingISP"""
-  val org         = """GeneratedFindingORG"""
-  val countryName = """GeneratedFindingCountryName"""
-  val cityName    = """GeneratedFindingCityName"""
-  val lat         = """0"""
-  val lon         = """0"""
-  val remotePort  = """32794"""
-  val localPort   = """22"""
-  val protocol    = """TCP"""
-  val blocked     = """false"""
+  val direction   = "INBOUND"
+  val ipAddressV4 = "198.51.100.0"
+  val asnOrg      = "GeneratedFindingASNOrg"
+  val isp         = "GeneratedFindingISP"
+  val org         = "GeneratedFindingORG"
+  val countryName = "GeneratedFindingCountryName"
+  val cityName    = "GeneratedFindingCityName"
+  val lat         = 0
+  val lon         = 0
+  val remotePort  = 32794
+  val localPort   = 22
+  val protocol    = "TCP"
+  val blocked     = false
 
-  val json = s"""{
+  val json: String = s"""{
                |  "region": "us-east-1",
                |  "detail": {
                |    "type": "UnauthorizedAccess:EC2/SSHBruteForce",
