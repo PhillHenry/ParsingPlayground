@@ -9,16 +9,16 @@ object CirceGuardDutyParser {
   implicit val decodeAction: Decoder[Connection] = Decoder.instance { c =>
     for {
       direction   <- c.get[String]("connectionDirection")
-//      ipAddressV4 <- c.get[String]("ipAddressV4")
-//      org         <- c.get[String]("org")
-//      asnOrg      <- c.get[String]("asnOrg")
-//      isp         <- c.get[String]("isp")
-//      country     <- c.get[String]("country")
-//      city        <- c.get[String]("city")
-//      lat         <- c.get[Double]("lat")
-//      lon         <- c.get[Double]("lon")
+      ipAddressV4 <- c.downField("remoteIpDetails").get[String]("ipAddressV4")
+      org         <- c.downField("remoteIpDetails").downField("organization").get[String]("org")
+      asnOrg      <- c.downField("remoteIpDetails").downField("organization").get[String]("asnOrg")
+      isp         <- c.downField("remoteIpDetails").downField("organization").get[String]("isp")
+      country     <- c.downField("remoteIpDetails").downField("country").get[String]("countryName")
+      city        <- c.downField("remoteIpDetails").downField("city").get[String]("cityName")
+      lat         <- c.downField("remoteIpDetails").downField("geoLocation").get[Double]("lat")
+      lon         <- c.downField("remoteIpDetails").downField("geoLocation").get[Double]("lon")
     } yield {
-      Connection(direction) //, /*ipAddressV4, org, asnOrg, isp,*/ country, city, lat, lon)
+      Connection(direction, ipAddressV4, org, asnOrg, isp, country, city, lat, lon)
     }
   }
 

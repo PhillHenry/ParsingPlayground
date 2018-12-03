@@ -11,15 +11,16 @@ class CirceGuardDutySpec extends WordSpec with Matchers {
   "Circe" should {
     import SampleGuardDuty._
 
-    val expectedAction = Connection(direction,
-//      ipAddressV4,
-//      org,
-//      asnOrg,
-//      isp,
-//      countryName,
-//      cityName,
-//      lat,
-//      lon
+    val expectedAction = Connection(
+      direction,
+      ipAddressV4,
+      org,
+      asnOrg,
+      isp,
+      countryName,
+      cityName,
+      lat,
+      lon
     )
 
     "be able to parse JSON" in {

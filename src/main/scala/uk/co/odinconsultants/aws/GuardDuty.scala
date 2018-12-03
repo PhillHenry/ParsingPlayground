@@ -7,14 +7,14 @@ object GuardDuty {
   case class Port(number: Int, name: String)
 
   case class Connection(direction: String,
+                        ipAddressV4: String,
+                        org: String,
+                        asnOrg: String,
+                        isp: String,
                         countryName: String = "",
                         cityName: String = "",
                         lat: Double = -1d,
                         lon: Double = -1d)
-//                        ipAddressV4: String,
-//                        org: String,
-//                        asnOrg: String,
-//                        isp: String,
 //                               protocol: String,
 //                               blocked: Boolean
 //                               remote: Port,
