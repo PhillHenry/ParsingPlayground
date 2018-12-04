@@ -27,6 +27,8 @@ class CirceGuardDutySpec extends WordSpec with Matchers {
       localPort
     )
 
+    val expectedDetail = Detail(expectedAction, parseDate(createdAtStr))
+
     "be able to parse JSON" in {
       val either = jsonDoc(json)
       either.fold( x => fail(s"${x.message} when parsing:\n$json"), _ => ())
@@ -34,6 +36,10 @@ class CirceGuardDutySpec extends WordSpec with Matchers {
 
     "extract action from GuardDuty JSON" in {
       asAction(json).fold(x => fail(x), _.shouldEqual(expectedAction))
+    }
+
+    "extract detail from JSON" in {
+      asDetail(json).fold(x => fail(x), _.shouldEqual(expectedDetail))
     }
 
     "be able to use optics" in {

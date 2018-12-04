@@ -1,6 +1,10 @@
 package uk.co.odinconsultants.aws
 
+import java.util.Date
+
 object GuardDuty {
+
+  case class Detail(connection: Connection, createdAt: Date)
 
   case class Connection(direction: String,
                         ipAddressV4: String,

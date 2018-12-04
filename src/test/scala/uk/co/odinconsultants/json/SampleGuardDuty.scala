@@ -1,20 +1,23 @@
 package uk.co.odinconsultants.json
 
+import java.text.SimpleDateFormat
+
 object SampleGuardDuty {
 
-  val direction   = "INBOUND"
-  val ipAddressV4 = "198.51.100.0"
-  val asnOrg      = "GeneratedFindingASNOrg"
-  val isp         = "GeneratedFindingISP"
-  val org         = "GeneratedFindingORG"
-  val countryName = "GeneratedFindingCountryName"
-  val cityName    = "GeneratedFindingCityName"
-  val lat         = 0
-  val lon         = 0
-  val remotePort  = 32794
-  val localPort   = 22
-  val protocol    = "TCP"
-  val blocked     = false
+  val direction     = "INBOUND"
+  val ipAddressV4   = "198.51.100.0"
+  val asnOrg        = "GeneratedFindingASNOrg"
+  val isp           = "GeneratedFindingISP"
+  val org           = "GeneratedFindingORG"
+  val countryName   = "GeneratedFindingCountryName"
+  val cityName      = "GeneratedFindingCityName"
+  val lat           = 0
+  val lon           = 0
+  val remotePort    = 32794
+  val localPort     = 22
+  val protocol      = "TCP"
+  val blocked       = false
+  val createdAtStr  = "2018-05-11T14:56:39.976Z"
 
   val json: String = s"""{
                |  "region": "us-east-1",
@@ -152,7 +155,7 @@ object SampleGuardDuty {
                |      "count": 1
                |    },
                |    "severity": 2,
-               |    "createdAt": "2018-05-11T14:56:39.976Z",
+               |    "createdAt": "$createdAtStr",
                |    "updatedAt": "2018-05-11T14:56:39.976Z",
                |    "title": "$ipAddressV4 is performing SSH brute force attacks against i-99999999. ",
                |    "description": "$ipAddressV4 is performing SSH brute force attacks against i-99999999. Brute force attacks are used to gain unauthorized access to your instance by guessing the SSH password."
