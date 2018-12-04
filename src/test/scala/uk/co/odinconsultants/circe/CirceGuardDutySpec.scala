@@ -4,7 +4,7 @@ import org.scalatest.{Matchers, WordSpec}
 import uk.co.odinconsultants.json.SampleGuardDuty
 import uk.co.odinconsultants.aws.GuardDuty._
 
-class CirceGuardDutySpec extends WordSpec with Matchers {
+class CirceGuardDutySpec extends WordSpec with Matchers with SampleGuardDuty {
 
   import CirceGuardDutyParser._
 
@@ -49,7 +49,7 @@ class CirceGuardDutySpec extends WordSpec with Matchers {
         case Left(failure)  => fail(failure)
         case Right(text)    =>
           val _createdAt = root.detail.createdAt.string
-          _createdAt.getOption(text) shouldBe Some("2018-05-11T14:56:39.976Z")
+          _createdAt.getOption(text) shouldBe Some(createdAtStr)
       }
     }
   }
