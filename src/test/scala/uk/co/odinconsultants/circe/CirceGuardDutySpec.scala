@@ -18,25 +18,9 @@ class CirceGuardDutySpec extends WordSpec with Matchers with SampleGuardDuty {
   }
 
   "Circe" should {
-    val json: String  = createJson(direction,  ipAddressV4, asnOrg, isp, org, countryName, cityName, lat, lon, remotePort, localPort, protocol, blocked, createdAtStr)
-
-    val expectedAction = Connection(
-      direction,
-      ipAddressV4,
-      org,
-      asnOrg,
-      isp,
-      countryName,
-      cityName,
-      lat,
-      lon,
-      protocol,
-      blocked,
-      remotePort,
-      localPort
-    )
-
-    val expectedDetail = Detail(expectedAction, parseDate(createdAtStr))
+    val json: String    = createJson(direction,  ipAddressV4, asnOrg, isp, org, countryName, cityName, lat, lon, remotePort, localPort, protocol, blocked, createdAtStr)
+    val expectedAction  = Connection(direction, ipAddressV4, org, asnOrg, isp, countryName, cityName, lat, lon, protocol, blocked, remotePort, localPort)
+    val expectedDetail  = Detail(expectedAction, parseDate(createdAtStr))
 
     "be able to parse JSON" in {
       val either = jsonDoc(json)
