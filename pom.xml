@@ -34,6 +34,11 @@
             <version>0.11.0</version>
         </dependency>
         <dependency>
+            <groupId>io.circe</groupId>
+            <artifactId>circe-generic_${scala.compat.version}</artifactId>
+            <version>0.10.0</version>
+        </dependency>
+        <dependency>
             <groupId>org.scala-lang</groupId>
             <artifactId>scala-library</artifactId>
             <version>${scala.version}</version>
