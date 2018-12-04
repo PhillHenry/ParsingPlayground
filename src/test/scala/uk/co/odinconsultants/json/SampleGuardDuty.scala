@@ -17,11 +17,9 @@ trait SampleGuardDuty {
   val protocol      = "TCP"
   val blocked       = false
   val createdAtStr  = "2018-05-11T14:56:39.976Z"
-  val json: String = createJson(direction,  ipAddressV4, asnOrg, isp, org, countryName, cityName, lat, lon, remotePort, localPort, protocol, blocked, createdAtStr)
 }
 
 object SampleGuardDuty {
-
 
   def createJson(direction: String, ipAddressV4: String, asnOrg: String, isp: String, org: String, countryName: String,
                  cityName: String, lat: Double, lon: Double, remotePort: Int, localPort: Int, protocol: String, blocked: Boolean, createdAtStr: String): String = {

@@ -1,15 +1,24 @@
 package uk.co.odinconsultants.circe
 
 import org.scalatest.{Matchers, WordSpec}
-import uk.co.odinconsultants.json.SampleGuardDuty
 import uk.co.odinconsultants.aws.GuardDuty._
+import uk.co.odinconsultants.json.SampleGuardDuty
+import uk.co.odinconsultants.json.SampleGuardDuty.createJson
 
 class CirceGuardDutySpec extends WordSpec with Matchers with SampleGuardDuty {
 
   import CirceGuardDutyParser._
 
+  "Missing fields" should {
+    "not stop parsing" in {
+      val json            = createJson("", ipAddressV4, asnOrg, isp, org, countryName, cityName, lat, lon, remotePort, localPort, protocol, blocked, createdAtStr)
+      val expectedAction  = Connection("", ipAddressV4, org, asnOrg, isp, countryName, cityName, lat, lon, protocol, blocked, remotePort, localPort)
+      asAction(json).fold(x => fail(x), _.shouldEqual(expectedAction))
+    }
+  }
+
   "Circe" should {
-    import SampleGuardDuty._
+    val json: String  = createJson(direction,  ipAddressV4, asnOrg, isp, org, countryName, cityName, lat, lon, remotePort, localPort, protocol, blocked, createdAtStr)
 
     val expectedAction = Connection(
       direction,
