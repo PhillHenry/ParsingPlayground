@@ -4,6 +4,8 @@ import java.util.Date
 
 object GuardDuty {
 
+  case class InstanceDetails(tags: List[Tag])
+
   case class Tag(key: String, Value: String)
 
   case class Detail(connection: Connection, createdAt: Date)

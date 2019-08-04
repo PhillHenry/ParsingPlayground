@@ -9,9 +9,12 @@ import io.circe.parser._
 import uk.co.odinconsultants.aws.GuardDuty._
 
 /**
+  * Circe examples at https://github.com/circe/circe/tree/master/examples/sf-city-lots
+  *
   * @see https://stackoverflow.com/questions/52302080/circe-list-deserialization-with-best-attempt-and-error-reporting
   * @see https://stackoverflow.com/questions/42165460/how-to-decode-an-adt-with-circe-without-disambiguating-objects
   * @see https://github.com/circe/circe/issues/541 for semi-automatic deserialization
+  * @see https://stackoverflow.com/questions/42288948/how-to-use-circe-for-decoding-json-lists-arrays-in-scala
   */
 object CirceGuardDutyParser {
 
@@ -42,11 +45,11 @@ object CirceGuardDutyParser {
     dateFormatter.parse(x)
   }
 
-  implicit val decodeTag: Decoder[Tag] = deriveDecoder[Tag]
+//  implicit val decodeTag: Decoder[Tag] = deriveDecoder[Tag]
 //  implicit val decodeTags: Decoder[List[Tag]] = deriveDecoder[List[Tag]]
-  val decodeClipsParam = Decoder[List[Tag]].prepare(
-    _.downField("detail").downField("resource").downField("instanceDetails").downField("tags").downArray
-  )
+//  val decodeClipsParam = Decoder[List[Tag]].prepare(
+//    _.downField("detail").downField("resource").downField("instanceDetails").downField("tags").downArray
+//  )
 
 //  implicit val decodeTags: Decoder[List[Tag]] =
 //    deriveDecoder[List[Tag]].prepare(
@@ -78,7 +81,14 @@ object CirceGuardDutyParser {
 
   def asDetail(json: String): Either[Error, Detail] = decode(json)(decodeDetailParam)
 
-  def asTags(json: String): Either[Error, List[Tag]]  = decode[List[Tag]](json)(decodeClipsParam)
+  type TagType = List[Tag]
+
+//  implicit val decodeInstanceDetails: Decoder[TagType] =
+//    Decoder[TagType].prepare(
+//      _.downField("detail").downField("resource").downField("instanceDetails").downField("tags")
+//    )
+
+//  def asTags(json: String): Either[Error, TagType]  = decode[TagType](json)(decodeInstanceDetails)
 //  def asTags(json: String): Either[Error, List[Tag]]  = decode[List[Tag]](json) // Caused by: DecodingFailure(C[A], List()) or DecodingFailure(CNil, List())
 //  def asTags(json: String): Either[Error, Tag]  = decode[Tag](json) // Caused by: DecodingFailure(Attempt to decode value on failed cursor, List(DownField(key)))
 

@@ -1,10 +1,13 @@
 package uk.co.odinconsultants.circe
 
+import org.junit.runner.RunWith
+import org.scalatest.junit.JUnitRunner
 import org.scalatest.{Matchers, WordSpec}
 import uk.co.odinconsultants.aws.GuardDuty._
 import uk.co.odinconsultants.json.SampleGuardDuty
 import uk.co.odinconsultants.json.SampleGuardDuty.createJson
 
+@RunWith(classOf[JUnitRunner])
 class CirceGuardDutySpec extends WordSpec with Matchers with SampleGuardDuty {
 
   import CirceGuardDutyParser._
@@ -12,7 +15,7 @@ class CirceGuardDutySpec extends WordSpec with Matchers with SampleGuardDuty {
   "Implicitly derived types" should {
     val json: String    = createJson(direction, ipAddressV4, asnOrg, isp, org, countryName, cityName, lat, lon, remotePort, localPort, protocol, blocked, createdAtStr)
     "be extracted" ignore {
-      asTags(json).fold(fail(_), _ shouldBe Tag("GeneratedFindingInstaceTag1", "GeneratedFindingInstaceValue1"))
+//      asTags(json).fold(fail(_), _ shouldBe Tag("GeneratedFindingInstaceTag1", "GeneratedFindingInstaceValue1"))
     }
   }
 
@@ -27,7 +30,6 @@ class CirceGuardDutySpec extends WordSpec with Matchers with SampleGuardDuty {
   "Circe" should {
     val json: String    = createJson(direction, ipAddressV4, asnOrg, isp, org, countryName, cityName, lat, lon, remotePort, localPort, protocol, blocked, createdAtStr)
     val expectedAction  = Connection(direction, ipAddressV4, org, asnOrg, isp, countryName, cityName, lat, lon, protocol, blocked, remotePort, localPort)
-    val expectedDetail  = Detail(expectedAction, parseDate(createdAtStr))
 
     "be able to parse JSON" in {
       val either = jsonDoc(json)
@@ -39,6 +41,7 @@ class CirceGuardDutySpec extends WordSpec with Matchers with SampleGuardDuty {
     }
 
     "extract detail from JSON" in {
+      val expectedDetail  = Detail(expectedAction, parseDate(createdAtStr))
       asDetail(json).fold(x => fail(x), _.shouldEqual(expectedDetail))
     }
 
