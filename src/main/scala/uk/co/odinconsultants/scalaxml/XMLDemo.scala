@@ -2,7 +2,6 @@ package uk.co.odinconsultants.scalaxml
 
 /**
  * From Gitter:
- *
 
 PhillHenry @PhillHenry Nov 21 16:13
 Been handed some XML parsing work.
@@ -21,10 +20,6 @@ object XMLDemo {
   /**
    * https://github.com/scala/scala-xml/wiki/Getting-started
    */
-  val book: scala.xml.Elem = <book id="b20234">Magic of scala-xml</book>
-
-  def main(args: Array[String]): Unit = {
-    println(s"Book ID = ${book \@ "id"}")
-  }
+  val book: scala.xml.Elem = <book id="book_id">Magic of scala-xml</book>
 
 }
