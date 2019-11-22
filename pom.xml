@@ -19,6 +19,11 @@
 
     <dependencies>
         <dependency>
+            <groupId>org.scala-lang.modules</groupId>
+            <artifactId>scala-xml_2.12</artifactId>
+            <version>2.0.0-M1</version>
+        </dependency>
+        <dependency>
             <groupId>io.circe</groupId>
             <artifactId>circe-parser_${scala.compat.version}</artifactId>
             <version>${circe.version}</version>
